@@ -5,12 +5,19 @@
  */
 package unittestproject.attila;
 
+/**
+ * A netbeans 10+ verzióknak bajuk van a JUnit 5.x verzióval,
+ * ezért a 4-es verzió van használva. Ahhoz pedig ezek nem kellenek.
+ */
 //import org.junit.jupiter.api.AfterEach;
 //import org.junit.jupiter.api.AfterAll;
 //import org.junit.jupiter.api.BeforeEach;
 //import org.junit.jupiter.api.BeforeAll;
 //import org.junit.jupiter.api.Test;
 //import static org.junit.jupiter.api.Assertions.*;
+/**
+ * A jUnit4-hez szükségesek
+ */
 import static junit.framework.Assert.assertEquals;
 import static junit.framework.Assert.fail;
 import static org.hamcrest.CoreMatchers.is;
@@ -30,11 +37,15 @@ public class OperationTest {
      * Test of sum method, of class Operation.
      * Összeadás tesztelése
      */
+    //Az annitáció szükséges a JUnitnak, hogy tudja hogy tesztről van szó.
     @Test
     public void testSum() {
+        //Mit tesztelek
         System.out.println("2 + 3 = 5");
         Operation operation =new Operation(2, 3);
+        //Várt eredmény
         double expectedResult = 2 + 3;
+        //Teszt végrehajtása
         assertEquals(expectedResult, operation.sum());     
     }
     
@@ -76,16 +87,12 @@ public class OperationTest {
     
     /**
      * Test of sum method, of class Operation.
-     * Osztás tesztelése
+     * 0-val való osztás tesztelése, valóban kivételt dob-e.
      */
     @Test
     public void testDivDibisionByZero() {
         System.out.println("2 / 0 = Hiba! 0-val való osztás!");
-        Operation operation = new Operation(2,0);
-        //IllegalArgumentException expectedResult = new IllegalArgumentException("Hiba! 0-val való osztás!");
-        //assertEquals(expectedResult, operation.div());
-        //fail("Expected an IndexOutOfBoundsException to be thrown");
-        
+        Operation operation = new Operation(2,0);        
         try {
             IllegalArgumentException expectedResult = new IllegalArgumentException("Hiba! 0-val való osztás!");
             assertEquals(expectedResult, operation.div());
